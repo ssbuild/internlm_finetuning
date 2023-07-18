@@ -7,7 +7,7 @@ import torch
 from transformers import BitsAndBytesConfig
 from config.constant_map import train_info_models,train_target_modules_maps
 
-train_model_config = train_info_models['Baichuan-13B-Chat']
+train_model_config = train_info_models['internlm-chat-7b']
 
 
 global_args = {

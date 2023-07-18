@@ -4,17 +4,23 @@
 # @File：model_maps
 
 train_info_models = {
-    'Baichuan-13B-Base': {
+    'internlm-chat-7b': {
         'model_type': 'baichuan',
-        'model_name_or_path': '/data/nlp/pre_models/torch/baichuan/Baichuan-13B-Base',
-        'config_name': '/data/nlp/pre_models/torch/baichuan/Baichuan-13B-Base/config.json',
-        'tokenizer_name': '/data/nlp/pre_models/torch/baichuan/Baichuan-13B-Base',
+        'model_name_or_path': '/data/nlp/pre_models/torch/internlm/internlm-chat-7b',
+        'config_name': '/data/nlp/pre_models/torch/internlm/internlm-chat-7b/config.json',
+        'tokenizer_name': '/data/nlp/pre_models/torch/internlm/internlm-chat-7b',
     },
-    'Baichuan-13B-Chat': {
+    'internlm-chat-7b-8k': {
         'model_type': 'baichuan',
-        'model_name_or_path': '/data/nlp/pre_models/torch/baichuan/Baichuan-13B-Chat',
-        'config_name': '/data/nlp/pre_models/torch/baichuan/Baichuan-13B-Chat/config.json',
-        'tokenizer_name': '/data/nlp/pre_models/torch/baichuan/Baichuan-13B-Chat',
+        'model_name_or_path': '/data/nlp/pre_models/torch/internlm/internlm-chat-7b-8k',
+        'config_name': '/data/nlp/pre_models/torch/internlm/internlm-chat-7b-8k/config.json',
+        'tokenizer_name': '/data/nlp/pre_models/torch/internlm/internlm-chat-7b-8k',
+    },
+    'internlm-7b': {
+        'model_type': 'baichuan',
+        'model_name_or_path': '/data/nlp/pre_models/torch/internlm/internlm-7b',
+        'config_name': '/data/nlp/pre_models/torch/internlm/internlm-7b/config.json',
+        'tokenizer_name': '/data/nlp/pre_models/torch/internlm/internlm-7b',
     },
 
 }

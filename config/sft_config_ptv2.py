@@ -5,7 +5,7 @@ import json
 import os
 from config.constant_map import train_info_models
 
-train_model_config = train_info_models['Baichuan-13B-Chat']
+train_model_config = train_info_models['internlm-chat-7b']
 
 global_args = {
     "load_in_8bit": False, 
