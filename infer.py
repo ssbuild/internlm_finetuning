@@ -39,7 +39,7 @@ if __name__ == '__main__':
                  "Hamlet->Shakespeare\nOne Hundred Years of Solitude->",
                  ]
     for input in text_list:
-        response, history = model.chat(tokenizer=tokenizer, query=input, max_length=512,
+        response, history = model.chat(tokenizer=tokenizer, query=input, max_new_tokens=512,
                                        eos_token_id=[2, 103028],
                                        do_sample=False, top_p=0.7, temperature=0.95, )
         print('input', input)
