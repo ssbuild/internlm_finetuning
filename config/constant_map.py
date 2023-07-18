@@ -5,19 +5,19 @@
 
 train_info_models = {
     'internlm-chat-7b': {
-        'model_type': 'baichuan',
+        'model_type': 'internlm',
         'model_name_or_path': '/data/nlp/pre_models/torch/internlm/internlm-chat-7b',
         'config_name': '/data/nlp/pre_models/torch/internlm/internlm-chat-7b/config.json',
         'tokenizer_name': '/data/nlp/pre_models/torch/internlm/internlm-chat-7b',
     },
     'internlm-chat-7b-8k': {
-        'model_type': 'baichuan',
+        'model_type': 'internlm',
         'model_name_or_path': '/data/nlp/pre_models/torch/internlm/internlm-chat-7b-8k',
         'config_name': '/data/nlp/pre_models/torch/internlm/internlm-chat-7b-8k/config.json',
         'tokenizer_name': '/data/nlp/pre_models/torch/internlm/internlm-chat-7b-8k',
     },
     'internlm-7b': {
-        'model_type': 'baichuan',
+        'model_type': 'internlm',
         'model_name_or_path': '/data/nlp/pre_models/torch/internlm/internlm-7b',
         'config_name': '/data/nlp/pre_models/torch/internlm/internlm-7b/config.json',
         'tokenizer_name': '/data/nlp/pre_models/torch/internlm/internlm-7b',
