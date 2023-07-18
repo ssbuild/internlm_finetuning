@@ -8,7 +8,7 @@ from transformers import HfArgumentParser,AutoConfig
 
 from data_utils import train_info_args, NN_DataHelper
 from aigc_zoo.model_zoo.internlm.llm_model import MyTransformer,PromptArguments,InternLMConfig,InternLMTokenizer
-from aigc_zoo.utils.llm_generate import Generate
+# from aigc_zoo.utils.llm_generate import Generate
 
 if __name__ == '__main__':
     train_info_args['seed'] = None
@@ -45,8 +45,8 @@ if __name__ == '__main__':
                  "晚上睡不着应该怎么办",
                  "从南京到上海的路线"]
     for input in text_list:
-        response = Generate.generate(model, query=input, tokenizer=tokenizer, max_length=512,
-                                          eos_token_id=config.eos_token_id,pad_token_id=config.eos_token_id,
-                                          do_sample=False, top_p=0.7, temperature=0.95, )
+        response, history = model.chat(tokenizer=tokenizer, query=input, max_length=512,
+                                       eos_token_id=[2, 103028],
+                                       do_sample=False, top_p=0.7, temperature=0.95, )
         print('input', input)
         print('output', response)
