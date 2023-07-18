@@ -2,7 +2,7 @@
    - [deep_training](https://github.com/ssbuild/deep_training)
 
 ```text
-    07-18 support internlm finetuning
+    07-18 support internlm finetuning , 微调经验分享见: https://github.com/ssbuild/aigc_zoo#训练经验分享
 ```
    
 
