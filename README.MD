@@ -12,12 +12,9 @@
 
 
 ```text
-dev 通过一下方式安装 , 注意顺序
+dev 通过一下方式安装 
 pip uninstall aigc_zoo
 pip install -U git+https://github.com/ssbuild/aigc_zoo#egg=aigc_zoo
-pip uninstall deep_training
-pip install -U git+https://github.com/ssbuild/deep_training.git
-pip install -U transformers>=4.30 deepspeed bitsandbytes>=0.39 accelerate>=0.20
 ```
 
 
