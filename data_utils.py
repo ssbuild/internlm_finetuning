@@ -17,7 +17,7 @@ from aigc_zoo.model_zoo.internlm.llm_model import LoraArguments,LoraConfig,Promp
 from config import *
 
 data_conf = {
-    'strategy': DataStrategy.sup,  # 数据策略选项
+    'strategy': DataStrategy.sub_rounds,  # 数据策略选项
     DataStrategy.sup: {
         'stride':  int(train_info_args['max_seq_length'] / 3 * 2),
     },

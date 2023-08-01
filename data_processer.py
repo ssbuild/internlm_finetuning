@@ -34,6 +34,8 @@ class TokenIdsFinal:
         }
         return d
 
+
+
 class TokenUnSupervision:
     @classmethod
     def process(cls, tokenizer: PreTrainedTokenizer,config,stride, max_seq_length, examples):
@@ -63,6 +65,8 @@ class TokenUnSupervision:
 
 
 class TokenSupervision:
+
+
     @classmethod
     def process(cls, tokenizer: PreTrainedTokenizer,config,stride, max_seq_length, examples):
         ds = []
@@ -82,20 +86,24 @@ class TokenSupervision:
         return ds
 
 class TokenSupervisionRounds:
+    @staticmethod
+    def _build_inputs(query: str, history: typing.List[typing.Tuple[str, str]]):
+        prompt = ""
+        for record in history:
+            prompt += f"""<s><|User|>:{record[0]}<eoh>\n<|Bot|>:{record[1]}<eoa>\n"""
+        if len(prompt) == 0:
+            prompt += "<s>"
+        prompt += f"""<|User|>:{query}<eoh>\n<|Bot|>:"""
+        return prompt
+
     @classmethod
     def process(cls, tokenizer: PreTrainedTokenizer,config,stride, max_seq_length, examples):
         ds = []
-        prompt_text = ''
-        for idx, (question, answer) in enumerate(examples):
-            if idx == 0:
-                a_text = question
-            else:
-                a_text = prompt_text + "[Round {}]\n问：{}\n答：".format(idx, question)
 
-            prompt_text += "[Round {}]\n问：{}\n答：{}".format(idx, question, answer)
+        for idx, (question, answer) in enumerate(examples):
+            a_text = TokenSupervisionRounds._build_inputs(question,history=examples[:idx])
             a_ids = tokenizer.encode(text=a_text,add_special_tokens=False)[:max_seq_length-6]
             b_ids = tokenizer.encode(text=answer) + [config.eos_token_id]
-
 
             assert len(b_ids)
             input_ids_all = a_ids + b_ids
