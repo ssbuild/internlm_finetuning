@@ -24,7 +24,7 @@ pip install -U git+https://github.com/ssbuild/aigc_zoo#egg=aigc_zoo
 - [internlm-chat-7b](https://huggingface.co/internlm/internlm-chat-7b)
 - [internlm-chat-7b-8k](https://huggingface.co/internlm/internlm-chat-7b-8k)
 - [internlm-7b](https://huggingface.co/internlm/internlm-7b)
-
+- [internlm-chat-7b](https://huggingface.co/ssbuild/internlm-chat-7b-int4)
 
 ## data sample
 ```json
