@@ -24,7 +24,7 @@ train_info_models = {
     },
     'internlm-chat-7b-int4': {
         'model_type': 'internlm',
-        'model_name_or_path': '/data/nlp/pre_models/torch/internlm/internlm-chat-7b-int4b',
+        'model_name_or_path': '/data/nlp/pre_models/torch/internlm/internlm-chat-7b-int4',
         'config_name': '/data/nlp/pre_models/torch/internlm/internlm-chat-7b-int4/config.json',
         'tokenizer_name': '/data/nlp/pre_models/torch/internlm/internlm-chat-7b-int4',
     },
