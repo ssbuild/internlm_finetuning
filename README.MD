@@ -24,12 +24,23 @@ pip install -U git+https://github.com/ssbuild/aigc_zoo#egg=aigc_zoo
 - [internlm-chat-7b](https://huggingface.co/internlm/internlm-chat-7b)
 - [internlm-chat-7b-8k](https://huggingface.co/internlm/internlm-chat-7b-8k)
 - [internlm-7b](https://huggingface.co/internlm/internlm-7b)
-- [internlm-chat-7b](https://huggingface.co/ssbuild/internlm-chat-7b-int4)
+- [internlm-chat-7b-int4](https://huggingface.co/ssbuild/internlm-chat-7b-int4)
 
 ## data sample
+   第三方羊驼数据 https://github.com/hikariming/alpaca_chinese_dataset
+    单条数据示例
+
+```text
+p prefix  optional
+q question optional
+a answer   must
+
+```
 ```json
  {
-     "id": 0, "paragraph": [
+    "id": 0, 
+    "p": "我是qwen训练的模型",
+    "paragraph": [
          {
              "q": "从南京到上海的路线",
              "a":  "你好，南京到上海的路线如下：1. 南京到上海，可以乘坐南京地铁1号线，在南京站乘坐轨道交通1号线。2. 南京到浦东机场，可以搭乘上海地铁1号，在陆家嘴站乘坐地铁1线，在浦东国际机场站乘坐机场快线，前往上海浦东国际机场。3. 上海到南京，可以换乘上海地铁2号线，从南京站换乘地铁2线，再从南京南站换乘地铁1路，然后到达上海站"
@@ -38,10 +49,12 @@ pip install -U git+https://github.com/ssbuild/aigc_zoo#egg=aigc_zoo
  }
 ```
 
-多轮会话
+   多轮会话
 ```json
  {
-     "id": 0, "paragraph": [
+    "id": 0, 
+    "p": "我是qwen训练的模型",
+    "paragraph": [
         {
            "q": "你好",
            "a": "我是机器人，有什么可以帮助你的？"
@@ -63,7 +76,7 @@ pip install -U git+https://github.com/ssbuild/aigc_zoo#egg=aigc_zoo
     # infer_ptuning.py 推理p-tuning-v2微调模型
      python infer_finetuning.py
 
-
+![inference](data/1.png)
 
 ## training
 ```text

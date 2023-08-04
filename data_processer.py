@@ -39,7 +39,10 @@ class TokenIdsFinal:
 class TokenUnSupervision:
     @classmethod
     def process(cls, tokenizer: PreTrainedTokenizer,config,stride, max_seq_length, examples):
+        prefix, examples = examples
         input_ids_all = []
+        if len(prefix) > 0:
+            input_ids_all += tokenizer.encode(text=prefix,add_special_tokens=False)
         for idx, (question, answer) in enumerate(examples):
             a_ids = tokenizer.encode(text=question,add_special_tokens=False)
             b_ids = tokenizer.encode(text=answer) + [config.eos_token_id]
@@ -69,9 +72,10 @@ class TokenSupervision:
 
     @classmethod
     def process(cls, tokenizer: PreTrainedTokenizer,config,stride, max_seq_length, examples):
+        prefix,examples = examples
         ds = []
         for idx, (question, answer) in enumerate(examples):
-            a_ids = tokenizer.encode(text=question,add_special_tokens=False)[:max_seq_length-6]
+            a_ids = tokenizer.encode(text=prefix+question,add_special_tokens=False)[:max_seq_length-6]
             b_ids = tokenizer.encode(text=answer) + [config.eos_token_id]
             assert len(b_ids)
             input_ids_all = a_ids + b_ids
@@ -98,10 +102,10 @@ class TokenSupervisionRounds:
 
     @classmethod
     def process(cls, tokenizer: PreTrainedTokenizer,config,stride, max_seq_length, examples):
+        prefix, examples = examples
         ds = []
-
         for idx, (question, answer) in enumerate(examples):
-            a_text = TokenSupervisionRounds._build_inputs(question,history=examples[:idx])
+            a_text = TokenSupervisionRounds._build_inputs(prefix+question,history=examples[:idx])
             a_ids = tokenizer.encode(text=a_text,add_special_tokens=False)[:max_seq_length-6]
             b_ids = tokenizer.encode(text=answer) + [config.eos_token_id]
 
