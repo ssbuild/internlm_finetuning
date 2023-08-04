@@ -118,6 +118,7 @@ class NN_DataHelper(DataHelper):
                 jd = json.loads(line)
                 if not jd:
                     continue
+                prefix = jd.get('p','')
                 paragraph = jd['paragraph']
                 if i < 10:
                     print(paragraph)
