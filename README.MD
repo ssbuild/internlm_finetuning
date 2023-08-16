@@ -2,6 +2,7 @@
    - [deep_training](https://github.com/ssbuild/deep_training)
 
 ```text
+    08-16 推理可选使用 Rope NtkScale , 不训练扩展推理长度
     07-18 support internlm finetuning , 微调经验分享见: https://github.com/ssbuild/aigc_zoo#训练经验分享
 ```
    

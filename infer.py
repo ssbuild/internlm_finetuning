@@ -6,21 +6,27 @@ import torch
 from deep_training.data_helper import ModelArguments, DataArguments
 from transformers import HfArgumentParser, BitsAndBytesConfig
 from data_utils import train_info_args, NN_DataHelper, get_deepspeed_config,global_args
-from aigc_zoo.model_zoo.internlm.llm_model import MyTransformer,InternLMConfig,InternLMTokenizer
+from aigc_zoo.model_zoo.internlm.llm_model import (MyTransformer,InternLMConfig,InternLMTokenizer,
+                                                   RotaryNtkScaledArguments,RotaryLinearScaledArguments)
 # from aigc_zoo.utils.llm_generate import Generate
 
 deep_config = get_deepspeed_config()
 
 if __name__ == '__main__':
-    parser = HfArgumentParser((ModelArguments, DataArguments))
-    model_args, data_args = parser.parse_dict(train_info_args, allow_extra_keys=True)
+    parser = HfArgumentParser((ModelArguments,))
+    (model_args, ) = parser.parse_dict(train_info_args, allow_extra_keys=True)
 
-    dataHelper = NN_DataHelper(model_args, None, data_args)
+    dataHelper = NN_DataHelper(model_args)
     tokenizer, config, _,_= dataHelper.load_tokenizer_and_config()
     config.pad_token_id = config.eos_token_id
 
-    pl_model = MyTransformer(config=config, model_args=model_args,
-                             torch_dtype=torch.float16,)
+    enable_ntk = False
+    rope_args = None
+    if enable_ntk:
+        rope_args = RotaryNtkScaledArguments(name='rotary_emb', max_position_embeddings=2048, alpha=4)  # 扩展 8k
+        # rope_args = RotaryLinearScaledArguments(name='rotary_emb',max_position_embeddings=2048, scale=4) # 扩展 8k
+
+    pl_model = MyTransformer(config=config, model_args=model_args,torch_dtype=torch.float16,rope_args=rope_args)
 
     model = pl_model.get_llm_model()
     model = model.eval()
