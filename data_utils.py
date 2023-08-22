@@ -13,7 +13,7 @@ from deep_training.data_helper import DataHelper, ModelArguments, TrainingArgume
 from fastdatasets.record import load_dataset as Loader, RECORD, WriterObject, gfile
 from transformers import PreTrainedTokenizer, HfArgumentParser, PretrainedConfig
 from data_processer import DataStrategy, TokenSupervision, TokenUnSupervision, TokenSupervisionRounds
-from aigc_zoo.model_zoo.internlm.llm_model import LoraArguments,LoraConfig,PromptArguments,InternLMConfig,InternLMTokenizer
+from aigc_zoo.model_zoo.internlm.llm_model import EffiArguments,LoraConfig,PromptArguments,InternLMConfig,InternLMTokenizer
 from config import *
 
 data_conf = {
@@ -219,7 +219,7 @@ class NN_DataHelper(DataHelper):
 
 
 if __name__ == '__main__':
-    parser = HfArgumentParser((ModelArguments, TrainingArguments, DataArguments, LoraArguments,PromptArguments))
+    parser = HfArgumentParser((ModelArguments, TrainingArguments, DataArguments, EffiArguments,PromptArguments))
     model_args, training_args, data_args, _,_ = parser.parse_dict(train_info_args)
 
 

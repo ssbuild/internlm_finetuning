@@ -3,13 +3,10 @@
 
 import json
 import os
-from config.constant_map import train_info_models
-
-train_model_config = train_info_models['internlm-chat-7b']
+from config.constant_map import train_model_config,train_target_modules_maps
 
 global_args = {
-    "load_in_8bit": False, 
-    "load_in_4bit": False,
+
 
     #load_in_4bit 量化配置
     "quantization_config": None,

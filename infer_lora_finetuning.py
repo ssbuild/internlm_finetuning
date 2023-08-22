@@ -6,7 +6,7 @@ import torch
 from deep_training.data_helper import ModelArguments, DataArguments
 from transformers import HfArgumentParser,AutoConfig
 from data_utils import train_info_args, NN_DataHelper,global_args
-from aigc_zoo.model_zoo.internlm.llm_model import MyTransformer,LoraArguments,PromptArguments,InternLMConfig,InternLMTokenizer
+from aigc_zoo.model_zoo.internlm.llm_model import MyTransformer,EffiArguments,PromptArguments,InternLMConfig,InternLMTokenizer
 # from aigc_zoo.utils.llm_generate import Generate
 
 if __name__ == '__main__':
@@ -22,7 +22,7 @@ if __name__ == '__main__':
     ckpt_dir = './best_ckpt/last'
 
     config = InternLMConfig.from_pretrained(ckpt_dir)
-    lora_args = LoraArguments.from_pretrained(ckpt_dir)
+    lora_args = EffiArguments.from_pretrained(ckpt_dir)
 
     assert lora_args.inference_mode == True
 
