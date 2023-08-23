@@ -9,8 +9,8 @@ import re
 import torch
 from deep_training.data_helper import ModelArguments
 from transformers import HfArgumentParser, AutoConfig, GenerationConfig
-from data_utils import train_info_args, NN_DataHelper, global_args, build_messages
-from aigc_zoo.model_zoo.internlm.llm_model import MyTransformer,LoraModel,LoraArguments,PromptArguments,InternLMConfig,InternLMTokenizer
+from data_utils import train_info_args, NN_DataHelper, global_args
+from aigc_zoo.model_zoo.internlm.llm_model import MyTransformer,PetlModel,PetlArguments,PromptArguments,InternLMConfig,InternLMTokenizer
 
 
 
@@ -24,7 +24,7 @@ def convert_to_peft(ckpt_dir,output_dir = './peft_lora'):
                                                               tokenizer_class_name=InternLMTokenizer, )
 
     config = InternLMConfig.from_pretrained(ckpt_dir)
-    lora_args = LoraArguments.from_pretrained(ckpt_dir)
+    lora_args = PetlArguments.from_pretrained(ckpt_dir)
 
     # 非推理模式
     lora_args.inference_mode = False
