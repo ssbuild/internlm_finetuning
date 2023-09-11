@@ -92,7 +92,7 @@ a answer   must
     # infer_ptuning.py 推理p-tuning-v2微调模型
      python infer_finetuning.py
 
-![inference](asserts/1.png)
+![inference](assets/1.png)
 
 ## training
 ```text
