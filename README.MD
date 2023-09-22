@@ -21,7 +21,8 @@ pip install -U git+https://github.com/ssbuild/aigc_zoo#egg=aigc_zoo
 
 
 ## weigtht select one is suitable for you
-    
+- [internlm-chat-20b](https://huggingface.co/internlm/internlm-chat-20b)
+- [internlm-20b](https://huggingface.co/internlm/internlm-20b)
 - [internlm-chat-7b](https://huggingface.co/internlm/internlm-chat-7b)
 - [internlm-chat-7b-8k](https://huggingface.co/internlm/internlm-chat-7b-8k)
 - [internlm-7b](https://huggingface.co/internlm/internlm-7b)

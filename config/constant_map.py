@@ -29,6 +29,18 @@ train_info_models = {
         'tokenizer_name': '/data/nlp/pre_models/torch/internlm/internlm-chat-7b-int4',
     },
 
+    'internlm-20b': {
+        'model_type': 'internlm',
+        'model_name_or_path': '/data/nlp/pre_models/torch/internlm/internlm-20b',
+        'config_name': '/data/nlp/pre_models/torch/internlm/internlm-20b/config.json',
+        'tokenizer_name': '/data/nlp/pre_models/torch/internlm/internlm-20b',
+    },
+    'internlm-chat-20b': {
+        'model_type': 'internlm',
+        'model_name_or_path': '/data/nlp/pre_models/torch/internlm/internlm-chat-20b',
+        'config_name': '/data/nlp/pre_models/torch/internlm/internlm-chat-20b/config.json',
+        'tokenizer_name': '/data/nlp/pre_models/torch/internlm/internlm-chat-20b',
+    },
 }
 
 
