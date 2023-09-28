@@ -3,7 +3,7 @@
 
 import json
 import os
-from config.constant_map import train_model_config,train_target_modules_maps
+from config.constant_map import train_model_config
 
 
 
@@ -87,7 +87,9 @@ train_info_args = {
     'max_target_length': 100,  # 预测最大长度, 保留字段
     'use_fast_tokenizer': False,
     #'do_lower_case': False,
-
+    "dataloader_drop_last": True,
+    "dataloader_pin_memory": True,
+    "dataloader_num_workers": 0,
     ##############  lora模块
     'prompt': prompt_info_args,
 

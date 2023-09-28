@@ -51,7 +51,8 @@ if global_args["trainer_backend"] == "hf":
 
 
 def patch_args(train_info_args):
-    assert global_args["enable_lora"] + global_args["enable_ptv2"] <= 1 , ValueError("lora ptv2 cannot open at same time")
+    assert global_args["enable_lora"] + global_args["enable_ptv2"] <= 1, ValueError(
+        "lora ptv2 cannot open at same time")
 
     if global_args['quantization_config'] is not None:
         global_args['quantization_config'].load_in_4bit = global_args["load_in_bit"] == 4
@@ -60,27 +61,30 @@ def patch_args(train_info_args):
             global_args["quantization_config"] = None
 
     if global_args["enable_lora"]:
-        #检查lora adalora是否开启
+        # 检查lora adalora是否开启
         if 'lora' not in train_info_args and 'adalora' not in train_info_args:
             raise ValueError('please config lora or adalora')
-        if train_info_args.get('lora',{}).get('with_lora',False) and train_info_args.get('adalora',{}).get('with_lora',False):
-            raise Exception('lora and adalora can set one at same time !')
+        assert train_info_args.get('lora', {}).get('with_lora', False) + \
+               train_info_args.get('adalora', {}).get('with_lora', False) + \
+               train_info_args.get('ia3', {}).get('with_lora', False) == 1, ValueError(
+            'lora adalora ia3 can set one at same time !')
 
         train_info_args.pop('prompt', None)
     elif global_args["enable_ptv2"]:
         train_info_args.pop('lora', None)
         train_info_args.pop('adalora', None)
-        if hasattr(train_info_args,"gradient_checkpointing"):
+        train_info_args.pop('ia3', None)
+        if hasattr(train_info_args, "gradient_checkpointing"):
             train_info_args.gradient_checkpointing = False
     else:
-        train_info_args.pop('lora',None)
+        train_info_args.pop('lora', None)
         train_info_args.pop('adalora', None)
         train_info_args.pop('prompt', None)
+        train_info_args.pop('ia3', None)
 
     # 预处理
-    if 'rwkv' in train_info_args[ 'tokenizer_name' ].lower():
-        train_info_args[ 'use_fast_tokenizer' ] = True
-
+    if 'rwkv' in (train_info_args['tokenizer_name'] or train_info_args['model_name_or_path']).lower():
+        train_info_args['use_fast_tokenizer'] = True
 
 
 patch_args(train_info_args)

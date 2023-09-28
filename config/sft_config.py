@@ -74,6 +74,9 @@ train_info_args = {
     'max_target_length': 100,  # 预测最大长度, 保留字段
     'use_fast_tokenizer': False,
     #'do_lower_case': False,
+    "dataloader_drop_last": True,
+    "dataloader_pin_memory": True,
+    "dataloader_num_workers": 0,
 }
 
 
