@@ -8,6 +8,7 @@ import yaml
 from transformers import BitsAndBytesConfig
 from transformers.utils import strtobool
 from config.constant_map import *
+from config.colossalai_config import colossalai_strategy
 
 
 
