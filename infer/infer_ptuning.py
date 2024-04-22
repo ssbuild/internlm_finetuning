@@ -9,14 +9,14 @@ import torch
 from deep_training.data_helper import ModelArguments, DataArguments
 from transformers import HfArgumentParser,AutoConfig
 
-from data_utils import train_info_args, NN_DataHelper
-from aigc_zoo.model_zoo.internlm.llm_model import MyTransformer,PromptArguments,InternLMConfig,InternLMTokenizer
-# from aigc_zoo.utils.llm_generate import Generate
+from data_utils import config_args, NN_DataHelper
+from deep_training.zoo.model_zoo.internlm.llm_model import MyTransformer,PromptArguments,InternLMConfig,InternLMTokenizer
+# from deep_training.zoo.utils.llm_generate import Generate
 
 if __name__ == '__main__':
-    train_info_args['seed'] = None
+    config_args['seed'] = None
     parser = HfArgumentParser((ModelArguments,))
-    model_args, data_args = parser.parse_dict(train_info_args,allow_extra_keys=True)
+    model_args, data_args = parser.parse_dict(config_args,allow_extra_keys=True)
 
     dataHelper = NN_DataHelper(model_args)
     tokenizer, _, _, _ = dataHelper.load_tokenizer_and_config()
