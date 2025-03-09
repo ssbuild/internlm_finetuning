@@ -9,7 +9,7 @@ import torch
 from deep_training.data_helper import ModelArguments, DataArguments, TrainingArguments
 from transformers import HfArgumentParser, AutoConfig
 from data_utils import config_args, NN_DataHelper, get_deepspeed_config
-from deep_training.zoo.model_zoo.internlm.llm_model import MyTransformer,InternLMConfig,InternLMTokenizer
+from deep_training.zoo.model_zoo.internlm2.llm_model import MyTransformer,InternLM2Config,InternLM2Tokenizer
 # from deep_training.zoo.utils.llm_generate import Generate
 
 deep_config = get_deepspeed_config()
@@ -23,7 +23,7 @@ if __name__ == '__main__':
     tokenizer, _, _,_= dataHelper.load_tokenizer_and_config()
 
 
-    config = InternLMConfig.from_pretrained('./best_ckpt')
+    config = InternLM2Config.from_pretrained('./best_ckpt')
     pl_model = MyTransformer(config=config, model_args=model_args,torch_dtype=torch.float16,)
 
     # deepspeed 权重使用转换脚本命令
@@ -58,7 +58,6 @@ if __name__ == '__main__':
                  ]
     for input in text_list:
         response, history = model.chat(tokenizer=tokenizer,query=input,  max_new_tokens=512,
-                                          eos_token_id=[2, 103028],
                                           do_sample=False, top_p=0.7, temperature=0.95, )
         print('input',input)
         print('output',response)

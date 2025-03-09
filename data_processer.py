@@ -28,6 +28,21 @@ def build_template_internlm(query, answer = None,prefix=None, history=None):
         prompt += answer
     return prompt
 
+def build_template_internlm2(query, answer = None,prefix=None, history=None):
+    prompt = prefix or "You are an AI assistant whose name is InternLM (书生·浦语).\n" \
+"- InternLM (书生·浦语) is a conversational language model that is developed by Shanghai AI Laboratory (上海人工智能实验室). It is designed to be helpful, honest, and harmless.\n" \
+"- InternLM (书生·浦语) can understand and communicate fluently in the language chosen by the user such as English and 中文."
+
+    prompt = f"""<|im_start|>system\n{prompt}<|im_end|>\n"""
+
+    if history is not None:
+        for q,a in history:
+            prompt += f"""<|im_start|>user\n{q}<|im_end|>\n<|im_start|>assistant\n{a}<|im_end|>\n"""
+    prompt += f"""<|im_start|>user\n{query}<|im_end|>\n<|im_start|>assistant\n"""
+    if answer is not None:
+        prompt += answer
+    return prompt
+
 def build_template_default(query, answer = None, prefix=None, history=None):
     prompt = prefix or ''
     if history is not None:
@@ -53,7 +68,7 @@ def build_template_tiger(query,answer = None, prefix=None,history=None):
 
 
 #切换模板
-build_template = build_template_internlm
+build_template = build_template_internlm2
 
 class TokenIdsMaker:
     @classmethod

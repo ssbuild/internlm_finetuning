@@ -10,7 +10,7 @@ from deep_training.data_helper import ModelArguments, DataArguments
 from transformers import HfArgumentParser,AutoConfig
 
 from data_utils import config_args, NN_DataHelper
-from deep_training.zoo.model_zoo.internlm.llm_model import MyTransformer,PromptArguments,InternLMConfig,InternLMTokenizer
+from deep_training.zoo.model_zoo.internlm2.llm_model import MyTransformer,PromptArguments,InternLM2Config,InternLM2Tokenizer
 # from deep_training.zoo.utils.llm_generate import Generate
 
 if __name__ == '__main__':
@@ -22,7 +22,7 @@ if __name__ == '__main__':
     tokenizer, _, _, _ = dataHelper.load_tokenizer_and_config()
 
     train_weight_dir = './best_ckpt/last'
-    config = InternLMConfig.from_pretrained(train_weight_dir)
+    config = InternLM2Config.from_pretrained(train_weight_dir)
     prompt_args = PromptArguments.from_pretrained(train_weight_dir)
 
     assert prompt_args.inference_mode == True
@@ -49,7 +49,6 @@ if __name__ == '__main__':
                  "从南京到上海的路线"]
     for input in text_list:
         response, history = model.chat(tokenizer=tokenizer, query=input, max_new_tokens=512,
-                                       eos_token_id=[2, 103028],
                                        do_sample=False, top_p=0.7, temperature=0.95, )
         print('input', input)
         print('output', response)

@@ -9,7 +9,7 @@ import torch
 from deep_training.data_helper import ModelArguments, DataArguments
 from transformers import HfArgumentParser,AutoConfig
 from data_utils import config_args, NN_DataHelper,global_args
-from deep_training.zoo.model_zoo.internlm.llm_model import MyTransformer,PetlArguments,PromptArguments,InternLMConfig,InternLMTokenizer
+from deep_training.zoo.model_zoo.internlm2.llm_model import MyTransformer,PetlArguments,PromptArguments,InternLM2Config,InternLM2Tokenizer
 # from deep_training.zoo.utils.llm_generate import Generate
 
 if __name__ == '__main__':
@@ -25,7 +25,7 @@ if __name__ == '__main__':
     weight_dir = '../scripts/best_ckpt'
     lora_weight_dir = os.path.join(weight_dir, "last")
 
-    config = InternLMConfig.from_pretrained(weight_dir)
+    config = InternLM2Config.from_pretrained(weight_dir)
     lora_args = PetlArguments.from_pretrained(lora_weight_dir)
 
     assert lora_args.inference_mode == True
@@ -60,7 +60,6 @@ if __name__ == '__main__':
                      ]
         for input in text_list:
             response, history = model.chat(tokenizer=tokenizer, query=input, max_new_tokens=512,
-                                           eos_token_id=[2, 103028],
                                            do_sample=False, top_p=0.7, temperature=0.95, )
             print('input', input)
             print('output', response)

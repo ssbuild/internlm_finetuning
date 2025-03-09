@@ -12,7 +12,7 @@ from lightning.pytorch.callbacks import LearningRateMonitor
 from lightning.pytorch.strategies import DeepSpeedStrategy
 from transformers import HfArgumentParser
 from data_utils import NN_DataHelper, config_args, get_deepspeed_config, global_args
-from deep_training.zoo.model_zoo.internlm.llm_model import MyTransformer, PetlArguments, LoraConfig, PromptArguments,InternLMConfig,InternLMTokenizer
+from deep_training.zoo.model_zoo.internlm2.llm_model import MyTransformer, PetlArguments, LoraConfig, PromptArguments,InternLM2Config,InternLM2Tokenizer
 
 assert global_args["trainer_backend"] == "pl"
 
@@ -29,8 +29,8 @@ def main():
     if global_args['config_merge']:
         config_kwargs.update(global_args['config_merge'])
 
-    tokenizer, config, _, _ = dataHelper.load_tokenizer_and_config(config_class_name=InternLMConfig,
-                                                                   tokenizer_class_name=InternLMTokenizer,
+    tokenizer, config, _, _ = dataHelper.load_tokenizer_and_config(config_class_name=InternLM2Config,
+                                                                   tokenizer_class_name=InternLM2Tokenizer,
                                                                    config_kwargs=config_kwargs)
 
     dataHelper.make_dataset_all()

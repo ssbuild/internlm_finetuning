@@ -21,7 +21,7 @@ from transformers.utils import check_min_version, send_example_telemetry
 from transformers.utils.versions import require_version
 from data_utils import NN_DataHelper, config_args, get_deepspeed_config, global_args
 from deep_training.data_helper import ModelArguments, DataArguments,TrainingArgumentsHF
-from deep_training.zoo.model_zoo.internlm.llm_model import MyTransformer, PetlArguments, LoraConfig, PromptArguments,InternLMConfig,InternLMTokenizer
+from deep_training.zoo.model_zoo.internlm2.llm_model import MyTransformer, PetlArguments, LoraConfig, PromptArguments,InternLM2Config,InternLM2Tokenizer
 
 assert global_args["trainer_backend"] == "hf"
 
@@ -61,8 +61,8 @@ def main():
     if global_args['config_merge']:
         config_kwargs.update(global_args['config_merge'])
 
-    tokenizer, config, _, _ = dataHelper.load_tokenizer_and_config(config_class_name=InternLMConfig,
-                                                                   tokenizer_class_name=InternLMTokenizer,
+    tokenizer, config, _, _ = dataHelper.load_tokenizer_and_config(config_class_name=InternLM2Config,
+                                                                   tokenizer_class_name=InternLM2Tokenizer,
                                                                    config_kwargs=config_kwargs)
 
     with training_args.main_process_first(desc="make_dataset_all"):

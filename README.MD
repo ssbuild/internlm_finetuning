@@ -3,11 +3,7 @@
 
 ```text
     2024-04-22 简化
-    2023-10-09 support accelerator trainer
-    2023-10-07 support colossalai trainer
-    2023-09-26 support transformers trainer
-    2023-08-16 推理可选使用 Rope NtkScale , 不训练扩展推理长度
-    2023-07-18 support internlm finetuning , 微调经验分享见: https://github.com/ssbuild/aigc_zoo#训练经验分享
+    2024-02-15 init internlm2 finetuning
 ```
    
 
@@ -25,12 +21,10 @@ pip install -U git+https://github.com/ssbuild/aigc_zoo#egg=aigc_zoo
 
 
 ## weigtht select one is suitable for you
-- [internlm-chat-20b](https://huggingface.co/internlm/internlm-chat-20b)
-- [internlm-20b](https://huggingface.co/internlm/internlm-20b)
-- [internlm-chat-7b](https://huggingface.co/internlm/internlm-chat-7b)
-- [internlm-chat-7b-8k](https://huggingface.co/internlm/internlm-chat-7b-8k)
-- [internlm-7b](https://huggingface.co/internlm/internlm-7b)
-- [internlm-chat-7b-int4](https://huggingface.co/ssbuild/internlm-chat-7b-int4)
+- [internlm2-chat-20b](https://huggingface.co/internlm/internlm-chat-20b)
+- [internlm2-20b](https://huggingface.co/internlm/internlm-20b)
+- [internlm2-chat-7b](https://huggingface.co/internlm/internlm-chat-7b)
+- [internlm2-chat-7b](https://huggingface.co/internlm/internlm-chat-7b)
 
 ## data sample
 - [open_data 不定时更新数据集](https://github.com/ssbuild/open_data)
@@ -97,8 +91,6 @@ dataHelper.make_dataset_with_args(data_args.train_file,mixed_data=False, shuffle
 - [pytorch-task-example](https://github.com/ssbuild/pytorch-task-example)
 - [chatmoss_finetuning](https://github.com/ssbuild/chatmoss_finetuning)
 - [chatglm_finetuning](https://github.com/ssbuild/chatglm_finetuning)
-- [chatglm2_finetuning](https://github.com/ssbuild/chatglm2_finetuning)
-- [chatglm3_finetuning](https://github.com/ssbuild/chatglm3_finetuning)
 - [t5_finetuning](https://github.com/ssbuild/t5_finetuning)
 - [llm_finetuning](https://github.com/ssbuild/llm_finetuning)
 - [llm_rlhf](https://github.com/ssbuild/llm_rlhf)

@@ -1,13 +1,12 @@
 # @Time    : 2023/1/22 16:22
 # @Author  : tk
 # @FileName: data_utils.py
-import glob
-import sys
 import os
-from functools import cache
-
+import sys
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 
+import glob
+from functools import cache
 import copy
 import json
 import random
@@ -19,7 +18,7 @@ from deep_training.data_helper import DataHelper, ModelArguments, TrainingArgume
 from fastdatasets.record import load_dataset as Loader, RECORD, WriterObject, gfile
 from transformers import PreTrainedTokenizer, HfArgumentParser, PretrainedConfig
 from data_processer import DataStrategy, TokenIdsMaker,build_template
-from deep_training.zoo.model_zoo.internlm.llm_model import PetlArguments,LoraConfig,PromptArguments,InternLMConfig,InternLMTokenizer
+from deep_training.zoo.model_zoo.internlm2.llm_model import PetlArguments,LoraConfig,PromptArguments,InternLM2Config,InternLM2Tokenizer
 from config import *
 
 data_conf = {
@@ -56,9 +55,9 @@ class NN_DataHelper(DataHelper):
 
     def load_tokenizer_and_config(self,*args,**kwargs):
         if 'config_class_name' not in kwargs:
-            kwargs['config_class_name'] = InternLMConfig
+            kwargs['config_class_name'] = InternLM2Config
         if 'tokenizer_class_name' not in kwargs:
-            kwargs['tokenizer_class_name'] = InternLMTokenizer
+            kwargs['tokenizer_class_name'] = InternLM2Tokenizer
         tokenizer_kwargs = kwargs.get('tokenizer_kwargs',{})
         tokenizer_kwargs.update(self.tokenizer_kwargs)
         ret = super().load_tokenizer_and_config(*args,**kwargs)
@@ -266,8 +265,8 @@ if __name__ == '__main__':
                                                                                          allow_extra_keys=True, )
 
     dataHelper = NN_DataHelper(model_args, training_args, data_args)
-    tokenizer, config, _, _ = dataHelper.load_tokenizer_and_config(config_class_name=InternLMConfig,
-                                                                   tokenizer_class_name=InternLMTokenizer)
+    tokenizer, config, _, _ = dataHelper.load_tokenizer_and_config(config_class_name=InternLM2Config,
+                                                                   tokenizer_class_name=InternLM2Tokenizer)
 
     # 缓存数据集
     print(f'to make dataset is overwrite_cache {data_args.overwrite_cache}')
